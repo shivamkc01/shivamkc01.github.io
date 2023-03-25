@@ -219,12 +219,16 @@ df.info()
 dtypes: float64(4), int64(1), object(18) </br>
 memory usage: 2.1+ MB
 	</p></div>
-GenerateInterval(z0 = z0, lambda = lambda)</code></pre>
-<pre><code>## [1] 0.55 0.65</code></pre>
-<pre class="r"><code>z0 &lt;- 0
+<h2><b><span style='color:#94D4F6'>Numerical Feature Statistics</span></b></h2>
+The dataset contains <code>balance, age & amount</code> features, which correspond to the <span style='color:#94D4F6'>account balance</span> , <span style='color:#94D4F6'>age</span> and <span style='color:#94D4F6'>payment ammount</span>(all transactions made)<p>
+<pre class="python"><code>
+df.describe().T
+</code></pre>
 
-GenerateInterval(z0 = z0, lambda = lambda)</code></pre>
-<pre><code>## [1] 0.0 0.1</code></pre>
+<table border="1" class="dataframe"><thead><tr style="text-align: right;">  <th></th>    
+	<th>count</th><th>mean</th><th>std</th>  <th>min</th> <th>25%</th>   <th>50%</th><th>75%</th> <th>max</th> </tr></thead><tbody>  <tr>   <th>card_present_flag</th><td>7717.0</td>    <td>0.802644</td> <td>0.398029</td>   <td>0.00</td>     <td>1.000</td>    <td>1.00</td>    <td>1.000</td>    <td>1.00</td>   </tr>  <tr>     <th>merchant_code</th>   <td>883.0</td>     <td>0.000000</td>  <td>0.000000</td>    <td>0.00</td>  <td>0.000</td>   <td>0.00</td>    <td>0.000</td>      <td>0.00</td>   </tr>   <tr>    <th>balance</th>    <td>12043.0</td>    <td>14704.195553</td>    <td>31503.722652</td>    <td>0.24</td>     <td>3158.585</td>    <td>6432.01</td>     <td>12465.945</td>    <td>267128.52</td>   </tr> <tr>    <th>age</th>    <td>12043.0</td>    <td>30.582330</td>  
+	<td>10.046343</td>     <td>18.00</td>    <td>22.000</td>    <td>28.00</td>   <td>38.000</td>      <td>78.00</td>  </tr>  <tr>     <th>amount</th>      <td>12043.0</td>    <td>187.933588</td><td>592.599934</td>   <td>0.10</td>     <td>16.000</td> <td>29.00</td> <td>53.655</td>   <td>8835.98</td>  </tr> </tbody></table>
+
 <p>Now let us write a function which verifies if a point <span class="math inline">\(x \in [0,1]\)</span> belongs to a given interval.</p>
 <pre class="r"><code>IsInInterval &lt;- function (x, interval) {
   #&#39;Evaluate wether a given point belongs to the given interval. 
