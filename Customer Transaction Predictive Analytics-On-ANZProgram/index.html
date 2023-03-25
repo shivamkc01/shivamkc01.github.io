@@ -124,7 +124,7 @@ plotly.offline.init_notebook_mode(connected=True)
 
 # Reading dataset
 df = pd.read_csv("./data/anz.csv")
-#df.head(5)
+df.head(5)
 </code></pre>
 	    <h2><b><span style="color: #FF6600">|</span> Let's see the first five data from our dataset.</b></h2>
 	    <pre class="html">
@@ -181,17 +181,17 @@ df.T.sort_index().T.columns
        'merchant_id', 'merchant_long_lat', 'merchant_state', 'merchant_suburb',
        'movement', 'status', 'transaction_id', 'txn_description'],
       dtype='object')</p></div>
-	    <h2><b><span style='color:#94D4F6'>Column Data Type (dtype)</h2>
-		    <p>We can change some of the data types, eg. <code>date & extraction</code> to <code>datetime</code> so <b>we can extract some data from this feature</b></p>
-		  <pre class="python"><code>
+	    <h2><b><span style='color:#94D4F6'>Column Data Type (dtype)</b></h2>
+		    <p>We can change some of the data types, eg. <code>date & extraction</code> to <code>datetime</code> so we can extract some data from this feature</p>
+<pre class="python"><code>
 df.info()
 </code></pre>
 		    
 <div style="background-color:#F1A63B">
 	<p style="color:black;">
-RangeIndex: 12043 entries, 0 to 12042  \n
-Data columns (total 23 columns): \n
- #   Column             Non-Null Count  Dtype  
+		RangeIndex: 12043 entries, 0 to 12042 </br>
+		    Data columns (total 23 columns): </br>
+	    #   Column    </t>         Non-Null Count  Dtype  </br>
 ---  ------             --------------  -----  
  0   status             12043 non-null  object 
  1   card_present_flag  7717 non-null   float64
