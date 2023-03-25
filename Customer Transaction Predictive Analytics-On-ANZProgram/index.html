@@ -126,9 +126,9 @@ plotly.offline.init_notebook_mode(connected=True)
 df = pd.read_csv("./data/anz.csv")
 #df.head(5)
 </code></pre>
-	    <h5><b><span style="color: #FF6600">|</span> Let's see the first five data from our dataset.</b></h>
-	    <pre>
-	    <code class="html">
+	    <h3><b><span style="color: #FF6600">|</span> Let's see the first five data from our dataset.</b></h>
+	    <pre class="html">
+	    <code >
 	    <table border="1" class="dataframe">
 	    <thead>
 	    <tr style="text-align: right;">
@@ -170,43 +170,22 @@ df = pd.read_csv("./data/anz.csv")
 		 </pre>
 
 
-<pre class="r"><code># Set dimension.
-p &lt;- 1
+<pre class="python"><code>
 
-# Number of sample points.
-n0 = 100
+df.T.sort_index().T.columns
+<div style="color:white;display:fill;border-radius:8px;background-color:#808080;font-size:150%;letter-spacing:1.0px">
+	<p style="padding: 10px;color:white;"><b><b><span style='color:#FF6600'/span>|</b>
+	Index(['account', 'age', 'amount', 'balance', 'bpay_biller_code',
+       'card_present_flag', 'country', 'currency', 'customer_id', 'date',
+       'extraction', 'first_name', 'gender', 'long_lat', 'merchant_code',
+       'merchant_id', 'merchant_long_lat', 'merchant_state', 'merchant_suburb',
+       'movement', 'status', 'transaction_id', 'txn_description'],
+      dtype='object')</b></p></div>
 
-# Generate observation matrix
-X &lt;- runif(n = n0, min = 0, max = 1)  %&gt;% matrix(ncol = p)</code></pre>
-<p>Given <span class="math inline">\(z_0 \in [0,1]\)</span>, let us define a function which returns the <span class="math inline">\(\lambda\)</span>-interval. We need to consider separate cases, depending wether the <span class="math inline">\(z_0\)</span> has distance less than <span class="math inline">\(\lambda/2\)</span> to some of the boundary points.</p>
-<pre class="r"><code>GenerateInterval &lt;- function (z0, lambda) {
-  #&#39;Generate lambda-interval 
-  #&#39;
-  #&#39;@param z0 point in the unit interval. 
-  #&#39;@param lambda locality parameter.
-  #&#39;@return lambda-interval of z0.
-  
-    if (z0 &lt; lambda/2) {
-    
-    u.min &lt;- 0
-    u.max &lt;- lambda
-    
-  } else if (z0 &lt; 1 - lambda/2) {
-    
-    u.min &lt;- z0 - lambda/2
-    u.max &lt;- z0 + lambda/2
-    
-  } else {
-    
-    u.min &lt;- 1 - lambda 
-    u.max &lt;- 1
-    
-  }
-  
-  interval &lt;- c(u.min, u.max)
-  
-  return(interval)
-}</code></pre>
+df.info()
+</code></pre>
+	    <code
+</code></pre>
 <p>Let us consider some examples:</p>
 <pre class="r"><code>z0 &lt;- 0.6
 
