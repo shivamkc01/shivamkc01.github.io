@@ -90,7 +90,7 @@
 		    <li>So many of the insights you gather from the task below will be a genuine reflection of a realistic dataset</li>
 	    </ul>
 <div style="color:white;display:fill;border-radius:8px;background-color:#03112A;font-size:150%;letter-spacing:1.0px">
-	<p style="padding: 10px;color:white;"><b><b><span style='color:#FF6600'/span></b> Data@ANZ Tasks</b></p></div>
+	<p style="padding: 10px;color:white;"><b><b><span style='color:#FF6600'/span>1.2 |</b> Data@ANZ Tasks</b></p></div>
 	    <b><span style='color:#FF6600'>EXPLORATORY DATA ANALYSIS</span></b>
 	    <ul>
 		    <li><span style='color:#FF6600'>Segment</span> the dataset and draw unique insights, including visualisation of the <span style='color:#FF6600'>transaction volume</span> and assessing the <span style='color:#FF6600'>effect of any outliers</span></li>
@@ -99,8 +99,29 @@
 	    </ul>
 	    
 	    <p>Let us prepare the notebook.</p>
-<pre class="r"><code>library(glue)
-library(tidyverse)</code></pre>
+<pre class="r">
+import pandas as pd
+import numpy as np
+import plotly
+import missingno as msno
+import seaborn as sns
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.figure_factory as ff
+from plotly.subplots import make_subplots
+import warnings
+warnings.filterwarnings('ignore)
+
+
+# Create Linear Model 
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split as tts
+from sklearn.metrics import mean_squared_error as MSE
+from sklearn.tree import DecisionTreeRegressor as DTR
+sns.set(style='whitegrid')
+plotly.offline.init_notebook_mode(connected=True)
+</code></pre>
 <p>Let <span class="math inline">\(\lambda:= 0.1\)</span> represent the <em>locality</em> input parameter. i.e <span class="math inline">\(10\)</span>%.</p>
 <pre class="r"><code>lambda &lt;- 0.1</code></pre>
 <p>Let us generate <span class="math inline">\(X\)</span>, i.e. the sample observations.</p>
