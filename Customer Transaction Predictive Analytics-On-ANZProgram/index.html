@@ -231,7 +231,7 @@ The dataset contains <code>balance, age & amount</code> features, which correspo
 df.describe().T
 </code></pre>
 
-<table border="1" class="dataframe"><thead><tr style="text-align: right;">  <th></th>    
+<table border="1" class="dataframe"><thead><tr style="text-align: right;"> <th></th>    
 	<th>count</th><th>mean</th><th>std</th>  <th>min</th> <th>25%</th>   <th>50%</th><th>75%</th> <th>max</th> </tr></thead><tbody>  <tr>   <th>card_present_flag</th><td>7717.0</td>    <td>0.802644</td> <td>0.398029</td>   <td>0.00</td>     <td>1.000</td>    <td>1.00</td>    <td>1.000</td>    <td>1.00</td>   </tr>  <tr>     <th>merchant_code</th>   <td>883.0</td>     <td>0.000000</td>  <td>0.000000</td>    <td>0.00</td>  <td>0.000</td>   <td>0.00</td>    <td>0.000</td>      <td>0.00</td>   </tr>   <tr>    <th>balance</th>    <td>12043.0</td>    <td>14704.195553</td>    <td>31503.722652</td>    <td>0.24</td>     <td>3158.585</td>    <td>6432.01</td>     <td>12465.945</td>    <td>267128.52</td>   </tr> <tr>    <th>age</th>    <td>12043.0</td>    <td>30.582330</td>  
 	<td>10.046343</td>     <td>18.00</td>    <td>22.000</td>    <td>28.00</td>   <td>38.000</td>      <td>78.00</td>  </tr>  <tr>     <th>amount</th>      <td>12043.0</td>    <td>187.933588</td><td>592.599934</td>   <td>0.10</td>     <td>16.000</td> <td>29.00</td> <td>53.655</td>   <td>8835.98</td>  </tr> </tbody></table>
 </br>
@@ -279,7 +279,7 @@ df['date'] = df['date'].astype('datetime64[ns]')
 df['bin_age']=pd.cut(df.age,[0,20,30,40,50,60,70,200],
                      labels=['<20','20-30','30-40','40-50','50-60','60-70','70>'])
 </code></pre>
-<h2><b><span style='color:#94D4F6'>Extracting Time Data</span></b></h2></br>
+<h2><b><span style='color:#94D4F6'>Extracting Time Data</span></b></h2>
 We will be utilising the <i>extraction</i> time for generating time features:
 <ul>
 <li>Two features, <i>extraction & date</i> are time based features; can extract some useful features from them (eg. day of the week)</li>
