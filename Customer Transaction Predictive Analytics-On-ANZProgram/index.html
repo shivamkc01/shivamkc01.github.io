@@ -126,7 +126,7 @@ plotly.offline.init_notebook_mode(connected=True)
 df = pd.read_csv("./data/anz.csv")
 #df.head(5)
 </code></pre>
-	    <h3><b><span style="color: #FF6600">|</span> Let's see the first five data from our dataset.</b></h>
+	    <h2><b><span style="color: #FF6600">|</span> Let's see the first five data from our dataset.</b></h2>
 	    <pre class="html">
 	    <code >
 	    <table border="1" class="dataframe">
@@ -181,13 +181,45 @@ df.T.sort_index().T.columns
        'merchant_id', 'merchant_long_lat', 'merchant_state', 'merchant_suburb',
        'movement', 'status', 'transaction_id', 'txn_description'],
       dtype='object')</p></div>
-
-
-	    <code
-</code></pre>
-<p>Let us consider some examples:</p>
-<pre class="r"><code>z0 &lt;- 0.6
-
+	    <h2><b><span style='color:#94D4F6'>Column Data Type (dtype)</h2>
+		    <p>We can change some of the data types, eg. <code>date & extraction</code> to <code>datetime</code> so <b>we can extract some data from this feature</b></p>
+		    <pre class="python"><code>
+		    df.info()
+		    </code></pre>
+		    
+<div style="background-color:#F1A63B">
+	<p style="color:black;">
+	<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 12043 entries, 0 to 12042
+Data columns (total 23 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   status             12043 non-null  object 
+ 1   card_present_flag  7717 non-null   float64
+ 2   bpay_biller_code   885 non-null    object 
+ 3   account            12043 non-null  object 
+ 4   currency           12043 non-null  object 
+ 5   long_lat           12043 non-null  object 
+ 6   txn_description    12043 non-null  object 
+ 7   merchant_id        7717 non-null   object 
+ 8   merchant_code      883 non-null    float64
+ 9   first_name         12043 non-null  object 
+ 10  balance            12043 non-null  float64
+ 11  date               12043 non-null  object 
+ 12  gender             12043 non-null  object 
+ 13  age                12043 non-null  int64  
+ 14  merchant_suburb    7717 non-null   object 
+ 15  merchant_state     7717 non-null   object 
+ 16  extraction         12043 non-null  object 
+ 17  amount             12043 non-null  float64
+ 18  transaction_id     12043 non-null  object 
+ 19  country            12043 non-null  object 
+ 20  customer_id        12043 non-null  object 
+ 21  merchant_long_lat  7717 non-null   object 
+ 22  movement           12043 non-null  object 
+dtypes: float64(4), int64(1), object(18)
+memory usage: 2.1+ MB
+	</p></div>
 GenerateInterval(z0 = z0, lambda = lambda)</code></pre>
 <pre><code>## [1] 0.55 0.65</code></pre>
 <pre class="r"><code>z0 &lt;- 0
