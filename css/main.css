@@ -62,12 +62,12 @@ blockquote {
 }
 
 .nav-logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.5);
 }
 
 .nav-logo img {
   display: block;
-  max-height: 60px;
+  max-height: 80px;
   width: auto;
   border-radius: 15%;
 }
