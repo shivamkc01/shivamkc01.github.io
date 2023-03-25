@@ -128,7 +128,42 @@ df = pd.read_csv("./data/anz.csv")
 </code></pre>
 	    <pre>
 	    <code class="html">
-	    <table border="1" class="dataframe">\n  <thead>\n    <tr style="text-align: right;">\n      <th></th>\n      <th>status</th>\n      <th>card_present_flag</th>\n      <th>bpay_biller_code</th>\n      <th>account</th>\n      <th>currency</th>\n      <th>long_lat</th>\n      <th>txn_description</th>\n      <th>merchant_id</th>\n      <th>merchant_code</th>\n      <th>first_name</th>\n      <th>balance</th>\n      <th>date</th>\n      <th>gender</th>\n      <th>age</th>\n      <th>merchant_suburb</th>\n      <th>merchant_state</th>\n      <th>extraction</th>\n      <th>amount</th>\n      <th>transaction_id</th>\n      <th>country</th>\n      <th>customer_id</th>\n      <th>merchant_long_lat</th>\n      <th>movement</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>authorized</td>\n      <td>1.0</td>\n      <td>NaN</td>\n      <td>ACC-1598451071</td>\n      <td>AUD</td>\n      <td>153.41 -27.95</td>\n      <td>POS</td>\n      <td>81c48296-73be-44a7-befa-d053f48ce7cd</td>\n      <td>NaN</td>\n      <td>Diana</td>\n      <td>35.39</td>\n      <td>8/1/2018</td>\n      <td>F</td>\n      <td>26</td>\n      <td>Ashmore</td>\n      <td>QLD</td>\n      <td>2018-08-01T01:01:15.000+0000</td>\n      <td>16.25</td>\n      <td>a623070bfead4541a6b0fff8a09e706c</td>\n      <td>Australia</td>\n      <td>CUS-2487424745</td>\n      <td>153.38 -27.99</td>\n      <td>debit</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>authorized</td>\n      <td>0.0</td>\n      <td>NaN</td>\n      <td>ACC-1598451071</td>\n      <td>AUD</td>\n      <td>153.41 -27.95</td>\n      <td>SALES-POS</td>\n      <td>830a451c-316e-4a6a-bf25-e37caedca49e</td>\n      <td>NaN</td>\n      <td>Diana</td>\n      <td>21.20</td>\n      <td>8/1/2018</td>\n      <td>F</td>\n      <td>26</td>\n      <td>Sydney</td>\n      <td>NSW</td>\n      <td>2018-08-01T01:13:45.000+0000</td>\n      <td>14.19</td>\n      <td>13270a2a902145da9db4c951e04b51b9</td>\n      <td>Australia</td>\n      <td>CUS-2487424745</td>\n      <td>151.21 -33.87</td>\n      <td>debit</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>authorized</td>\n      <td>1.0</td>\n      <td>NaN</td>\n      <td>ACC-1222300524</td>\n      <td>AUD</td>\n      <td>151.23 -33.94</td>\n      <td>POS</td>\n      <td>835c231d-8cdf-4e96-859d-e9d571760cf0</td>\n      <td>NaN</td>\n      <td>Michael</td>\n      <td>5.71</td>\n      <td>8/1/2018</td>\n      <td>M</td>\n      <td>38</td>\n      <td>Sydney</td>\n      <td>NSW</td>\n      <td>2018-08-01T01:26:15.000+0000</td>\n      <td>6.42</td>\n      <td>feb79e7ecd7048a5a36ec889d1a94270</td>\n      <td>Australia</td>\n      <td>CUS-2142601169</td>\n      <td>151.21 -33.87</td>\n      <td>debit</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>authorized</td>\n      <td>1.0</td>\n      <td>NaN</td>\n      <td>ACC-1037050564</td>\n      <td>AUD</td>\n      <td>153.10 -27.66</td>\n      <td>SALES-POS</td>\n      <td>48514682-c78a-4a88-b0da-2d6302e64673</td>\n      <td>NaN</td>\n      <td>Rhonda</td>\n      <td>2117.22</td>\n      <td>8/1/2018</td>\n      <td>F</td>\n      <td>40</td>\n      <td>Buderim</td>\n      <td>QLD</td>\n      <td>2018-08-01T01:38:45.000+0000</td>\n      <td>40.90</td>\n      <td>2698170da3704fd981b15e64a006079e</td>\n      <td>Australia</td>\n      <td>CUS-1614226872</td>\n      <td>153.05 -26.68</td>\n      <td>debit</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>authorized</td>\n      <td>1.0</td>\n      <td>NaN</td>\n      <td>ACC-1598451071</td>\n      <td>AUD</td>\n      <td>153.41 -27.95</td>\n      <td>SALES-POS</td>\n      <td>b4e02c10-0852-4273-b8fd-7b3395e32eb0</td>\n      <td>NaN</td>\n      <td>Diana</td>\n      <td>17.95</td>\n      <td>8/1/2018</td>\n      <td>F</td>\n      <td>26</td>\n      <td>Mermaid Beach</td>\n      <td>QLD</td>\n      <td>2018-08-01T01:51:15.000+0000</td>\n      <td>3.25</td>\n      <td>329adf79878c4cf0aeb4188b4691c266</td>\n      <td>Australia</td>\n      <td>CUS-2487424745</td>\n      <td>153.44 -28.06</td>\n      <td>debit</td>\n    </tr>\n  </tbody>\n</table>
+	    <table border="1" class="dataframe">\n  <thead>
+	    <tr style="text-align: right;">
+	    <th></th>
+	    <th>status</th>
+	    <th>card_present_flag</th>
+	    <th>bpay_biller_code</th>
+	    <th>account</th><th>currency</th>
+	    <th>long_lat</th><th>txn_description</th>
+	    <th>merchant_id</th>
+	    <th>merchant_code</th>
+	    <th>first_name</th> <th>balance</th> <th>date</th><th>gender</th><th>age</th><th>merchant_suburb</th>
+	    <th>merchant_state</th><th>extraction</th><th>amount</th><th>transaction_id</th> <th>country</th>
+	    <th>customer_id</th><th>merchant_long_lat</th><th>movement</th> </tr>
+	    </thead>\n  <tbody> <tr><th>0</th> <td>authorized</td>
+	    <td>1.0</td>\<td>NaN</td>\<td>ACC-1598451071</td> <td>AUD</td><td>153.41 -27.95</td>
+	    <td>POS</td><td>81c48296-73be-44a7-befa-d053f48ce7cd</td> <td>NaN</td> <td>Diana</td><td>35.39</td><td>8/1/2018</td>
+	    <td>F</td> <td>26</td><td>Ashmore</td> <td>QLD</td><td>2018-08-01T01:01:15.000+0000</td> <td>16.25</td>
+	    <td>a623070bfead4541a6b0fff8a09e706c</td> <td>Australia</td> <td>CUS-2487424745</td> <td>153.38 -27.99</td>
+	    <td>debit</td> </tr> <tr><th>1</th> <td>authorized</td><td>0.0</td> <td>NaN</td> <td>ACC-1598451071</td> <td>AUD</td> <td>153.41 -27.95</td>
+	    <td>SALES-POS</td><td>830a451c-316e-4a6a-bf25-e37caedca49e</td> <td>NaN</td>  <td>Diana</td>  <td>21.20</td>  <td>8/1/2018</td> <td>F</td>
+	    <td>26</td> <td>Sydney</td><td>NSW</td>  <td>2018-08-01T01:13:45.000+0000</td><td>14.19</td> <td>13270a2a902145da9db4c951e04b51b9</td>
+	    <td>Australia</td><td>CUS-2487424745</td> <td>151.21 -33.87</td>  <td>debit</td>  </tr> <tr>  <th>2</th>  <td>authorized</td>  <td>1.0</td>
+	    <td>NaN</td> <td>ACC-1222300524</td> <td>AUD</td>  <td>151.23 -33.94</td><td>POS</td> <td>835c231d-8cdf-4e96-859d-e9d571760cf0</td>
+	    <td>NaN</td> <td>Michael</td>  <td>5.71</td>   <td>8/1/2018</td> <td>M</td>  <td>38</td>   <td>Sydney</td>  <td>NSW</td>
+	    <td>2018-08-01T01:26:15.000+0000</td> <td>6.42</td> <td>feb79e7ecd7048a5a36ec889d1a94270</td>   <td>Australia</td>  <td>CUS-2142601169</td>
+	    <td>151.21 -33.87</td> <td>debit</td></tr><tr><th>3</th>   <td>authorized</td>   <td>1.0</td>  <td>NaN</td>
+	    <td>ACC-1037050564</td><td>AUD</td>  <td>153.10 -27.66</td><td>SALES-POS</td>
+	    <td>48514682-c78a-4a88-b0da-2d6302e64673</td><td>NaN</td> <td>Rhonda</td>    <td>2117.22</td>
+	    <td>8/1/2018</td>  <td>F</td>  <td>40</td>   <td>Buderim</td>     <td>QLD</td>
+	    <td>2018-08-01T01:38:45.000+0000</td>     <td>40.90</td>    <td>2698170da3704fd981b15e64a006079e</td>
+	    <td>Australia</td>   <td>CUS-1614226872</td>  <td>153.05 -26.68</td>   <td>debit</td> </tr>  <tr>
+	    <th>4</th>    <td>authorized</td>    <td>1.0</td>   <td>NaN</td>  <td>ACC-1598451071</td>    <td>AUD</td>
+	    <td>153.41 -27.95</td><td>SALES-POS</td>  <td>b4e02c10-0852-4273-b8fd-7b3395e32eb0</td>   <td>NaN</td>
+	    <td>Diana</td> <td>17.95</td><td>8/1/2018</td>  <td>F</td>  <td>26</td>  <td>Mermaid Beach</td><td>QLD</td>
+	    <td>2018-08-01T01:51:15.000+0000</td> <td>3.25</td>  <td>329adf79878c4cf0aeb4188b4691c266</td>
+	    <td>Australia</td><td>CUS-2487424745</td> <td>153.44 -28.06</td>  <td>debit</td> </tr></tbody></table>
 	    </code>
 		 </pre>
 
