@@ -59,7 +59,6 @@ blockquote {
 .nav-logo {
   float: left;
   margin-top: -11px;
-  transition: transform 150ms ease-out;
 }
 
 .nav-logo:hover {
@@ -68,7 +67,7 @@ blockquote {
 
 .nav-logo img {
   display: block;
-  max-height: 40px;
+  max-height: 60px;
   width: auto;
   border-radius: 15%;
 }
