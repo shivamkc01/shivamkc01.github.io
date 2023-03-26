@@ -312,6 +312,37 @@ df = df.drop(['extraction'],axis=1)
 </code></pre>
 
 <p><img src="../images/missing_plot.png" width="672" style="display: block; margin: auto;" /></p>
+
+<pre><code class="python"># Correlation of missing data
+fig = msno.heatmap(df,cmap='Greens')
+fig_copy = fig.get_figure()
+fig_copy.savefig('missing_corr.png', bbox_inches = 'tight')</code></pre>
+<p><img src="../images/missing_corr.png" width="672" style="display: block; margin: auto;" /></p>
+
+<div style=" background-color:#3b3745; padding: 13px 13px; border-radius: 8px; color: white">
+<ul>
+    <li>We can notice some patterns in features <b>card_present_flag</b>, <b>merchant_id</b>, <b>merchant_longitude</b>, <b>merchant_state</b> & <b>merchant_suburb</b></li>
+    <li>The heamap confirms that rows of data missing in <b>card_present_flag</b> is the same as merchant features with the exception for <b>merchant_code</b></li>
+</ul>
+</div>
+<pre><code class="python">df = df.drop(['bpay_biller_code'],axis=1)</code></pre>
+
+<div style="color:white;display:fill;border-radius:8px;background-color:#03112A;font-size:150%;letter-spacing:1.0px"><p style="padding: 10px;color:white;"><b><b><span style='color:#94D4F6'>2.4 |</span></b> Feature Inspection</b></p></div>
+<h2><b><span style='color:#FF6600'>Currency & Location Features</span></b></h2>
+<h2>The domain of the dataset:</h2>
+<ul>
+<li>The features in this dataset are related to transactions** made through the banking system (whichever approach, eg. online, physical swipes...)</li>
+</ul>
+<div style=" background-color:#3b3745; padding: 13px 13px; border-radius: 8px; color: white">
+
+<ul>
+    
+<li>Let's start with features that don't differ <b>country</b> and <b>currency</b></li> 
+<li><b>All transactions are made in Australia</b> and are in <b>AUD</b> (ie. only <b>domestic transactions</b> are included)
+<li>Geographically transactions can in different <b>states</b> of Australia</li>
+    
+</ul>
+</div>
 <div id="topBar"><h2><a href ="../images/customer_age_dist.html" onclick="load_home()" > OUTPUT</a></h2> </div>
 <div id ="content"> </div>
 <script>
