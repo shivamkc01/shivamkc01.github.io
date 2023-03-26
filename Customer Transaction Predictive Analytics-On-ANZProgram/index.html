@@ -46,7 +46,7 @@
 
   <ul class="nav-links">
     
-    <li><a href="../About/"> About</a></li>
+    <li><a href="./About/"> About</a></li>
     
     <li><a href="https://github.com/juanitorduz"><i class='fab fa-github fa-2x'></i>  </a></li>
     
@@ -99,7 +99,7 @@
 	    </ul>
 	    
 	    <p>Let us prepare the notebook.</p>
-<pre class="python"><code>
+<pre><code class="python">
 import pandas as pd
 import numpy as np
 import plotly
@@ -129,7 +129,7 @@ df.head(5)
 	    <h2><b><span style="color: #FF6600">|</span> Let's see the first five data from our dataset.</b></h2>
 	    <pre class="html">
 	    <code >
-	    <table border="1" class="dataframe">
+	    <table border="1" class="dataframe" style="color: #8ffdec">
 	    <thead>
 	    <tr style="text-align: right;">
 	    <th></th>
@@ -170,11 +170,11 @@ df.head(5)
 		 </pre>
 
 
-<pre class="python"><code>
+<pre><code class="python">
 df.T.sort_index().T.columns
 </code></pre>
 	    
-<div style="background-color:#F1A63B">
+<div style="background-color:#8ffdec">
 	<p style="color:black;">
 	Index(['account', 'age', 'amount', 'balance', 'bpay_biller_code',
        'card_present_flag', 'country', 'currency', 'customer_id', 'date',
@@ -183,14 +183,14 @@ df.T.sort_index().T.columns
        'movement', 'status', 'transaction_id', 'txn_description'],
       dtype='object')</p></div>
 	    
-	    <h2><b><span style='color:#94D4F6'>Column Data Type (dtype)</b></h2>
+	    <h2><b><span style='color:#8ffdec'>Column Data Type (dtype)</b></h2>
 		    <p>We can change some of the data types, eg. <code>date & extraction</code> to <code>datetime</code> so we can extract some data from this feature</p>
 
-		    <pre class="python"><code>
+		    <pre><code class="python">
 df.info()
 </code></pre>
 		    
-<div style="background-color:#F1A63B">
+<div style="background-color:#8ffdec">
 	<p style="color:black;">
 		RangeIndex: 12043 entries, 0 to 12042 </br>
 		    Data columns (total 23 columns): </br>
@@ -227,11 +227,11 @@ memory usage: 2.1+ MB
 <h2><b><span style='color:#F6600'>| </span>Numerical Feature Statistics</b></h2>
 The dataset contains <code>balance, age & amount</code> features, which correspond to the <span style='color:#94D4F6'>account balance</span> , <span style='color:#94D4F6'>age</span> and <span style='color:#94D4F6'>payment ammount</span>(all transactions made)<p>
 
-<pre class="python"><code>
+<pre><code class="python">
 df.describe().T
 </code></pre>
 
-<table border="1" class="dataframe"><thead><tr style="text-align: right;"> <th></th>    
+<table border="1" class="dataframe"><thead><tr style="text-align: right; color: #8ffdec"> <th></th>    
 	<th>count</th><th>mean</th><th>std</th>  <th>min</th> <th>25%</th>   <th>50%</th><th>75%</th> <th>max</th> </tr></thead><tbody>  <tr>   <th>card_present_flag</th><td>7717.0</td>    <td>0.802644</td> <td>0.398029</td>   <td>0.00</td>     <td>1.000</td>    <td>1.00</td>    <td>1.000</td>    <td>1.00</td>   </tr>  <tr>     <th>merchant_code</th>   <td>883.0</td>     <td>0.000000</td>  <td>0.000000</td>    <td>0.00</td>  <td>0.000</td>   <td>0.00</td>    <td>0.000</td>      <td>0.00</td>   </tr>   <tr>    <th>balance</th>    <td>12043.0</td>    <td>14704.195553</td>    <td>31503.722652</td>    <td>0.24</td>     <td>3158.585</td>    <td>6432.01</td>     <td>12465.945</td>    <td>267128.52</td>   </tr> <tr>    <th>age</th>    <td>12043.0</td>    <td>30.582330</td>  
 	<td>10.046343</td>     <td>18.00</td>    <td>22.000</td>    <td>28.00</td>   <td>38.000</td>      <td>78.00</td>  </tr>  <tr>     <th>amount</th>      <td>12043.0</td>    <td>187.933588</td><td>592.599934</td>   <td>0.10</td>     <td>16.000</td> <td>29.00</td> <td>53.655</td>   <td>8835.98</td>  </tr> </tbody></table>
 </br>
@@ -255,8 +255,8 @@ We can notice very early on some things we are able to do with the dataset:
 	<li>Create an <code>age group</code> feature, <code>bin_age</code>, which could have some relevance for both tasks</li>
 </ul>
 
-<pre class="python">
-<code>
+<pre>
+<code class="python">
 # Merchant location
 ldf = df['merchant_long_lat'].str.split(' ',expand=True)
 ldf.columns = ['merchant_longitude','merchant_latitude']
