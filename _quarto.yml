@@ -87,4 +87,6 @@ format:
 execute: 
   freeze: auto
 
+output-dir: _site
+
 include-in-header: assets/silvia/umami.html
