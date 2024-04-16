@@ -1,7 +1,7 @@
 /* title */
 .title {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.1em !important;
   font-family: "Petrona";
 }
@@ -10,7 +10,7 @@
 .subtitle {
   font-family: "Petrona";
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
