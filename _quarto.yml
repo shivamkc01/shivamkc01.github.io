@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: _site
+  output-dir: docs/
   post-render: 
     - "powershell -Command Copy-Item -Path 'static/*' -Destination '_site/' -Force"  # source: https://github.com/quarto-dev/quarto-cli/discussions/4162#discussioncomment-4831352
 
