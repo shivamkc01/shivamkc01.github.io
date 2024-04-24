@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Shivam Chhetry">
 <meta name="dcterms.date" content="2023-09-29">
-<title>Hello Quarto: Porting my Website from Hugo Apéro | Shivam Chhetry</title>
+<title>Transformers Explained Visually - How it works, step-by-step | Shivam Chhetry</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -159,13 +159,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns"><div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
-<h1 class="title">Hello Quarto: Porting my Website from Hugo Apéro</h1>
+<h1 class="title">Transformers Explained Visually - How it works, step-by-step</h1>
 <p class="subtitle lead"></p>
-<p>Notes from porting my personal Blogdown website to Quarto</p>
+<p>A Gentle Guide to the Transformer under the hood, and its end-to-end operation</p>
     <div class="quarto-categories">
-        <div class="quarto-category">R</div>
-        <div class="quarto-category">quarto</div>
-        <div class="quarto-category">website</div>
+        <div class="quarto-category">Python</div>
+        <div class="quarto-category">PyTorch</div>
+        <div class="quarto-category">NLP</div>
+        <div class="quarto-category">Math</div>
       </div>
   </div>
 
@@ -198,10 +199,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-<div class="mt-4 d-flex flex-row flex-wrap gap-1 justify-content-left justify-content-sm-start" role="group" aria-label="Links">
-<a href="https://quarto.org/docs/websites/" class="btn btn-secondary text-capitalize"><i class="bi bi-journal-text me-1"></i> Quarto Docs</a>
-</div>
 
+  
 </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
@@ -209,9 +208,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#goodbye-hugo-ap%C3%A9ro" id="toc-goodbye-hugo-apéro" class="nav-link active" data-scroll-target="#goodbye-hugo-ap%C3%A9ro">Goodbye, Hugo Apéro</a></li>
-  <li><a href="#why-port-to-quarto" id="toc-why-port-to-quarto" class="nav-link" data-scroll-target="#why-port-to-quarto">Why port to Quarto?</a></li>
-  <li><a href="#the-cost-of-porting" id="toc-the-cost-of-porting" class="nav-link" data-scroll-target="#the-cost-of-porting">The cost of porting</a></li>
+<li><a href="#goodbye-hugo-ap%C3%A9ro" id="toc-goodbye-hugo-apéro" class="nav-link active" data-scroll-target="#goodbye-hugo-ap%C3%A9ro">Overview of functionality</a></li>
+  <li><a href="#why-port-to-quarto" id="toc-why-port-to-quarto" class="nav-link" data-scroll-target="#why-port-to-quarto">How it works</a></li>
+  <li><a href="#the-cost-of-porting" id="toc-the-cost-of-porting" class="nav-link" data-scroll-target="#the-cost-of-porting">Multi-head Attention</a></li>
   <li>
 <a href="#designing-the-site" id="toc-designing-the-site" class="nav-link" data-scroll-target="#designing-the-site">Designing the site</a>
   <ul class="collapse">
