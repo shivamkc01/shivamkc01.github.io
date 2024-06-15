@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Shivam Chhetry">
 <meta name="dcterms.date" content="2023-09-29">
-<title>Microsoft Malware Detection using with XGBoost | Shivam Chhetry</title>
+<title>Titanic survival prediction | Shivam Chhetry</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,9 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+code {
+    color: black;
+  }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -113,6 +116,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="twitter:description" content="Notes from porting my personal Blogdown website to Quarto">
 <meta name="twitter:image" content="https://silviacanelon.com/blog/2023-09-29-hello-quarto/featured.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+
 </head>
 <body class="nav-fixed">
 
@@ -158,10 +165,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns"><div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
-<h1 class="title">Microsoft Malware Detection using with XGBoost</h1>
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns"><div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/6e/St%C3%B6wer_Titanic.jpg), url(featured.jpg), url(../featured.jpg);">
+<h1 class="title">Predict Titanic survival model using only one Feature scores 82%</h1>
 <p class="subtitle lead"></p>
-<p>In the past few years, the malware industry has grown very rapidly that, the syndicates invest heavily in technologies to evade traditional protection, forcing the anti-malware groups/communities to build more robust software to detect and terminate these attacks. The major part of protecting a computer system from a malware attack is to identify whether a given piece of file/software is a malware.</p>
+<p>The sinking of the Titanic is one of the most infamous shipwrecks in history.
+
+  On April 15, 1912, during her maiden voyage, the widely considered “unsinkable” RMS Titanic sank after colliding with an iceberg. Unfortunately, there weren’t enough lifeboats for everyone onboard, resulting in the death of 1502 out of 2224 passengers and crew.
+  
+  While there was some element of luck involved in surviving, it seems some groups of people were more likely to survive than others.
+  
+  In this challenge, we ask you to build a predictive model that answers the question: “what sorts of people were more likely to survive?” using passenger data (ie name, age, gender, socio-economic class, etc).</p>
     <div class="quarto-categories">
         <div class="quarto-category">Python</div>
         <div class="quarto-category">PyTorch</div>
@@ -184,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 29, 2023</p>
+      <p class="date">September 02, 2022</p>
     </div>
   </div>
   
@@ -209,8 +222,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li><a href="#goodbye-hugo-ap%C3%A9ro" id="toc-goodbye-hugo-apéro" class="nav-link active" data-scroll-target="#goodbye-hugo-ap%C3%A9ro">Business Problem</a></li>
-  <li><a href="#why-port-to-quarto" id="toc-why-port-to-quarto" class="nav-link" data-scroll-target="#why-port-to-quarto">Data Description</a></li>
-  <li><a href="#the-cost-of-porting" id="toc-the-cost-of-porting" class="nav-link" data-scroll-target="#the-cost-of-porting">Issue with large dataset</a></li>
+  <li><a href="#about-listing-pages" id="toc-about-listing-pages" class="nav-link" data-scroll-target="#about-listing-pages">Data Description</a></li>
+  <li><a href="#about-listing-pages2" id="toc-about-listing-pages2" class="nav-link" data-scroll-target="#about-listing-pages2">Issue with large dataset</a></li>
   <li>
 <a href="#designing-the-site" id="toc-designing-the-site" class="nav-link" data-scroll-target="#designing-the-site">Designing the site</a>
   <ul class="collapse">
@@ -253,19 +266,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title"> 
 --><!-- <header id="title-block-header" class="quarto-title-block default page-columns"> --><!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> -->
-  <section id="goodbye-hugo-apéro" class="level2"><h2 class="anchored" data-anchor-id="goodbye-hugo-apéro">Business Problem</h2>
-<p>Over recent years, the malware industry has experienced exponential growth, with syndicates making
-   Consequently A pivotal aspect of safeguarding computer systems against malware attacks lies in accurately identifying whether a particular file or 
-   software poses a malicious threat.
+  <section id="goodbye-hugo-apéro" class="level2"><h2 class="anchored" data-anchor-id="goodbye-hugo-apéro">The Challenge</h2>
+<p>The sinking of the Titanic is one of the most infamous shipwrecks in history.<br>
+  <br>
+  On April 15, 1912, during her maiden voyage, the widely considered “unsinkable” RMS Titanic sank after colliding with an iceberg. Unfortunately, there weren’t enough lifeboats for everyone onboard, resulting in the death of 1502 out of 2224 passengers and crew.
+  <br>
+  <br>
+  While there was some element of luck involved in surviving, it seems some groups of people were more likely to survive than others.
+  <br>
+  In this challenge, we ask you to build a predictive model that answers the question: <span style="color: #ff6600;">“what sorts of people were more likely to survive?” using passenger data (ie name, age, gender, socio-economic class, etc).</span>
 </p>
-<p><strong>Key Learning points of this Malware Kaggle Challenge : </strong> <br> 
+<p><strong>What Data Will I Use in This Competition?</strong> <br> 
  <ul>
-  <li>How to handle really large scale dataset ? Here, the total train data set consist of <span style="color: red;">200 GB</span> data out of which <span style="color: red;">50 GB</span> of data is <span style="color: blue;">.bytes</span> files and <span style="color: red;">150 GB</span> of data is <span style="color: blue;">.asm</span> files. </li>
-  <li>Feature engineering that you can apply on these huge set of .asm and .bytes files ? If till now you have been working only on text and image data, this will surely boost your intuitions on feature engineering</li>
-  <li>Leveraging domain knowledge</li>
+  <li>In this competition, you’ll gain access to two similar datasets that include passenger information like name, age, gender, socio-economic class, etc. One dataset is titled train.csv and the other is titled test.csv.</li>
+  <li>Train.csv will contain the details of a subset of the passengers on board (891 to be exact) and importantly, will reveal whether they survived or not, also known as the “ground truth”.</li>
+  <li>The test.csv dataset contains similar information but does not disclose the “ground truth” for each passenger. It’s your job to predict these outcomes.</li>
+  <li>Using the patterns you find in the train.csv data, predict whether the other 418 passengers on board (found in test.csv) survived.</li>
 </ul>
 </p>
 
+<!--
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">My goto Project Structure</a></li>
@@ -325,17 +345,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    <li><span style="color: #ff6600;">Constrains:</span> We need to provide the class probability, wrongly classified class labels should be penalized(that’s why log loss has been chosen as KPI) and there should some latency bound</li>
  </ul>
  </p>
+-->
 </section>
-<section id="about-listing-pages" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="about-listing-pages">Data Description</h3>
-<hr style="border: none; height: 2px; background-color: #1a1a1a;">
-<div class="page-columns page-full"><p>
-  You are provided with a set of known malware files representing a mix of 9 different families. Each malware file has an <b>Id</b>, a 20 character hash value uniquely identifying the file, and a <b>Class</b>, an integer representing one of 9 family names to which the malware may belong:
+<section id="about-listing-pages" class="level3 page-columns page-full"><h2 class="anchored" data-anchor-id="about-listing-pages">Dataset Description</h2>
+<div class="page-columns page-full"><p><strong>The data has been split into two groups:</strong> <br> 
+  <ul>
+   <li>training set (train.csv)</li>
+   <li>test set (test.csv)</li>
+ </ul>
+ </p>
+<p>
+<b>The training set</b> should be used to build your machine learning models. For the training set, we provide the outcome (also known as the “ground truth”) for each passenger. Your model will be based on “features” like passengers’ gender and class. You can also use feature engineering to create new features.
+<br><br>
+<b>The test set</b> should be used to see how well your model performs on unseen data. For the test set, we do not provide the ground truth for each passenger. It is your job to predict these outcomes. For each passenger in the test set, use the model you trained to predict whether or not they survived the sinking of the Titanic.
+<br><br>
+We also include <b>gender_submission.csv</b>, a set of predictions that assume all and only female passengers survive, as an example of what a submission file should look like.
 </p>
 
-
-  <img src="https://i.imgur.com/xyRX60l.png" alt="Centered Image" style="display: block; margin: 0 auto;"/>
+  <img src="data_description.png" alt="Centered Image" style="display: block; margin: 0 auto;"/>
 <br>
-  <p>
+  <!-- <p>
     For each file, the raw data contains the hexadecimal representation of the file's binary content, without the PE header (to ensure sterility). You are also provided a metadata manifest, which is a log containing various metadata information extracted from the binary, such as function calls, strings, etc. This was generated using the IDA disassembler tool. Your task is to develop the best mechanism for classifying files in the test set into their respective family affiliations.
   <br><br>  
   <b>The dataset contains the following files:</b>
@@ -346,16 +375,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <li><span style="color: #ff6600;">sampleSubmission.csv</span> - a file showing the valid submission format</li>
     <li><span style="color: #ff6600;">dataSample.csv</span> - a sample of the dataset to preview before downloading</li>
   </ul>  
-</p>
-
-<div style=" background-color:#074173;text-align:left; padding: 13px 13px; border-radius: 8px; color: white">
-  <b>Total train dataset consist of 200GB data out of which 50Gb of data is <spam style="color: #ff6600;"> .bytes </spam> files and 150GB of data is <spam style="color: #ff6600;"> .asm </spam> files
-</b>
-</div>
-
-<section id="about-listing-pages" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="about-listing-pages">Issue with large dataset</h3>
+</p> -->
 
 
+<div class="page-columns page-full"><p><strong>Below is the main concepts blueprint which I'll explain how it works.</strong> <br> 
+<img src="project_overview.png" alt="Centered Image" style="display: block; margin: 80px; width: 80%; height: auto;"/>
+<br>
+
+
+<section id="about-listing-pages2" class="level3 page-columns page-full"><h2 class="anchored" data-anchor-id="about-listing-pages2">Let's begin with the gender model</h2>
+<p>If we just predict females survive and males perish, we cross validate at 78.6% and receive a public leaderboard score of 76.6%.</p>
+  <pre class="language-python">
+    <code>
+      # The gender model achieves a 76.6% leaderboard score
+      import pandas as pd
+
+      # Read the CSV file
+      test = pd.read_csv("../input/titanic/test.csv")
+
+      # Update the 'Survived' column based on the 'Sex' column values
+      test['Survived'] = 0  # Default value for all rows
+      test.loc[test['Sex'] == 'female', 'Survived'] = 1  # Update 'Survived' to 1 where 'Sex' is female
+
+      # Create a DataFrame for submission
+      submit = pd.DataFrame({'PassengerId': test['PassengerId'], 'Survived': test['Survived']})
+
+      # Write the submission DataFrame to a CSV file
+      submit.to_csv("genderModel.csv", index=False)
+
+    </code>
+  </pre>
+  <img src="gendermodel_score.png" alt="Centered Image" style="display: block; margin: 60px; width: 90%; height: auto;"/>
+
+  <p>To improve upon the gender model, we need to determine which males survive and which females perish. By analyzing the Titanic data, we find that many male survivors are among the youth, namely 52.5% = 21/40 of males under 16 years old survive. And most females who perish are among Pclass==3 passengers, namely 50% = 72/144 of Pclass==3 females perish.</p>
+  <pre class="language-python">
+    <code>
+      # Read the CSV file
+      train = pd.read_csv("../input/titanic/train.csv")
+
+      # Count the number of survived males under the age of 16
+      survived_male_under_16 = train[(train['Sex'] == 'male') & (train['Age'] < 16)]['Survived'].value_counts()
+      print("Survived males under 16:")
+      print(survived_male_under_16)
+
+      # Count the number of survived females in Pclass 3
+      survived_female_pclass_3 = train[(train['Sex'] == 'female') & (train['Pclass'] == 3)]['Survived'].value_counts()
+      print("\nSurvived females in Pclass 3:")
+      print(survived_female_pclass_3)
+
+    </code>
+  </pre>
+  <p>
+    <b>OUTPUT:</b><br>
+    Survived males under 16:<br>
+Survived<br>
+1  21<br>
+0    19<br>
+Name: count, dtype: int64
+<br><br>
+Survived females in Pclass 3:<br>
+Survived<br>
+1    72<br>
+0    72<br>
+Name: count, dtype: int64<br>
+  </p>
+  <hr>
+
+  <h3>Survived males under 16:</h3>
+<ul>
+    <li>There were 21 males under the age of 16 who survived.</li>
+    <li>There were 19 males under the age of 16 who did not survive.</li>
+</ul>
+
+<h3>Survived females in Pclass 3:</h3>
+<ul>
+    <li>There were 72 females in Pclass 3 who survived.</li>
+    <li>There were 72 females in Pclass 3 who did not survive.</li>
+</ul>
+  
 
 
 
@@ -618,7 +715,7 @@ Bones of the contact page
 <div class="sourceCode" id="cb12" data-filename="_partials/title-block-link-buttons/title-block.html"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> </span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ot">id</span><span class="op">=</span><span class="st">"title-block-header-title"</span><span class="ot"> </span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ot">class</span><span class="op">=</span><span class="st">"quarto-title page-columns page-full page-layout-full featured-image p-4"</span><span class="ot"> </span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ot">style</span><span class="op">=</span><span class="st">"background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"</span><span class="dt">&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ot">style</span><span class="op">=</span><span class="st">"background-image: url(https://www.kbhaskar.com/project/microsoft/featured.png), url(https://www.kbhaskar.com/project/microsoft/featured.png), url(https://www.kbhaskar.com/project/microsoft/featured.png);"</span><span class="dt">&gt;</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>...</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
